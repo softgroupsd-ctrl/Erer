@@ -4,58 +4,134 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>الموقع متوقف مؤقتاً</title>
-
 <style>
-body{
-    margin:0;
-    font-family:Arial;
-    background:linear-gradient(135deg,#0d6efd,#00c6ff);
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:#fff;
-    text-align:center;
-}
+    body, html{
+        margin:0;
+        padding:0;
+        height:100%;
+        font-family:'Arial',sans-serif;
+        overflow:hidden;
+        background: #00c6ff;
+    }
 
-.box{
-    background:white;
-    color:#333;
-    padding:50px;
-    border-radius:20px;
-    box-shadow:0 20px 60px rgba(0,0,0,.3);
-    max-width:500px;
-}
+    /* البحر */
+    .ocean{
+        height:100%;
+        width:100%;
+        position:relative;
+        background: linear-gradient(to top, #0d6efd 0%, #00c6ff 100%);
+        overflow:hidden;
+    }
 
-h1{
-    font-size:40px;
-    margin-bottom:10px;
-}
+    .wave{
+        background: url('https://i.ibb.co/q9r8J3r/wave.png') repeat-x;
+        position:absolute;
+        bottom:0;
+        width:200%;
+        height:200px;
+        opacity:0.5;
+        animation: waveMove 10s linear infinite;
+    }
 
-p{
-    font-size:18px;
-}
+    .wave2{
+        bottom:20px;
+        opacity:0.3;
+        animation: waveMove 15s linear infinite reverse;
+    }
 
-.status{
-    margin-top:20px;
-    color:#0d6efd;
-    font-weight:bold;
-    font-size:20px;
-}
+    @keyframes waveMove{
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+    }
+
+    /* السفينة */
+    .ship{
+        position:absolute;
+        bottom:50px;
+        left:-200px;
+        width:150px;
+        animation: sail 12s linear infinite;
+        z-index:2;
+    }
+
+    @keyframes sail{
+        from { left:-200px; }
+        to { left:100%; }
+    }
+
+    /* صندوق الرسالة */
+    .message-box{
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255,255,255,0.95);
+        padding:50px 30px;
+        border-radius:25px;
+        text-align:center;
+        box-shadow:0 15px 50px rgba(0,0,0,.3);
+        z-index:3;
+    }
+
+    .message-box h1{
+        font-size:42px;
+        margin-bottom:15px;
+        color:#0d6efd;
+        animation: pulse 2s infinite;
+    }
+
+    .message-box p{
+        font-size:18px;
+        margin:8px 0;
+        color:#333;
+    }
+
+    .message-box button{
+        margin-top:20px;
+        padding:12px 25px;
+        font-size:16px;
+        background:#0d6efd;
+        color:#fff;
+        border:none;
+        border-radius:12px;
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    .message-box button:hover{
+        background:#0056b3;
+    }
+
+    @keyframes pulse{
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
 </style>
 </head>
-
 <body>
 
-<div class="box">
-<h1>🚧 الموقع متوقف مؤقتاً</h1>
-<p>نعتذر، النظام حالياً خارج الخدمة</p>
-<p>يرجى المحاولة بعد قليل</p>
+<div class="ocean">
+    <div class="wave"></div>
+    <div class="wave wave2"></div>
+    <img class="ship" src="https://i.ibb.co/TrvL2wC/ship.png" alt="Ship" />
+    <div class="message-box">
+        <h1>🚢 الموقع متوقف مؤقتاً</h1>
+        <p>نعتذر، نظام حجز البواخر حالياً خارج الخدمة</p>
+        <p>الرجاء المحاولة بعد قليل أو الضغط على زر التحديث</p>
+        <button onclick="window.location.reload()">تحديث الآن</button>
+        <div style="margin-top:15px; font-weight:bold; color:#0d6efd;">
+            ATLCO BOOKING SYSTEM
+        </div>
+    </div>
+</div>
 
-<div class="status">
-ATLCO BOOKING SYSTEM
-</div>
-</div>
+<script>
+    // إعادة التوجيه تلقائياً بعد 30 ثانية
+    setTimeout(function(){
+        window.location.href = "https://atlcobookingsd.online";
+    }, 30000);
+</script>
 
 </body>
 </html>
